@@ -7,7 +7,7 @@
 
 ---
 
-# 🚗 Locadora Relâmpago Matt
+# 🚗 Locadora Rota Segura
 
 Sistema de locação de veículos em Java, executado via console. Permite cadastrar clientes e veículos, abrir e encerrar locações, emitir comprovantes e persistir o histórico de contratos em arquivo texto.
 
