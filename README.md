@@ -1,33 +1,40 @@
 # Concessionaria
 
-Disciplina: Técnicas de Programação I (TP1)
-Aluno: Matheus Kenzo Cardoso Takahashi
-Matrícula: 1301392611027
-IDE de Desenvolvimento: Eclipse Java ID
+**Disciplina:** Técnicas de Programação I (TP1)  
+**Aluno:** Matheus Kenzo Cardoso Takahashi  
+**Matrícula:** 1301392611027  
+**IDE de Desenvolvimento:** Eclipse Java ID
 
-🚗 Locadora Relâmpago Matt
+---
+
+# 🚗 Locadora Relâmpago Matt
 
 Sistema de locação de veículos em Java, executado via console. Permite cadastrar clientes e veículos, abrir e encerrar locações, emitir comprovantes e persistir o histórico de contratos em arquivo texto.
 
 O projeto demonstra conceitos de Programação Orientada a Objetos: herança, polimorfismo, classes abstratas, interfaces, encapsulamento, exceções customizadas e I/O de arquivos.
 
-📐 Arquitetura
+## 📐 Arquitetura
 
 O código é dividido em dois pacotes, cada um com uma responsabilidade:
 
-Pacote	Responsabilidade	Classes
-Loja	Domínio (regras de negócio)	Veiculo, Popular, Sedan, SUV, Cliente, Contrato, Imprimivel
-Principal	Aplicação / infraestrutura (menus, entrada do usuário, disco, erros)	Main, Interface, Persistencia, Excecoes
-Principais decisões de projeto
-Herança + polimorfismo: Veiculo é abstrata e declara calcularDiaria, calcularSeguro e calcularManutencao. Cada categoria (Popular, Sedan, SUV) implementa sua própria regra, e Contrato calcula o valor total sem saber o tipo concreto do veículo.
-Interface Imprimivel: define gerarComprovante() e imprimir(). Contrato a implementa, e Persistencia grava os comprovantes sem depender de nada além da interface.
-Repositório de clientes em memória: Cliente mantém um HashMap<Long, Cliente> estático, com busca por CPF em O(1) e bloqueio de CPF duplicado.
-Validação no construtor/setters: os objetos nunca são criados em estado inválido (programação defensiva). Os setters lançam IllegalArgumentException.
-Exceções de negócio: Excecoes agrupa as checked exceptions VeiculoIndisponivelException, DataInvalidaException e ValidacaoException.
-Camada de interface: Interface (abstrata) concentra os menus e as coleções frota e contratos (LinkedList). Main a estende e executa o laço principal.
-Persistência: Persistencia.salvarHistorico() sobrescreve historico_locacoes.txt a cada nova locação ou devolução, usando try-with-resources.
+| Pacote | Responsabilidade | Classes |
+|---|---|---|
+| `Loja` | Domínio (regras de negócio) | `Veiculo`, `Popular`, `Sedan`, `SUV`, `Cliente`, `Contrato`, `Imprimivel` |
+| `Principal` | Aplicação / infraestrutura (menus, entrada do usuário, disco, erros) | `Main`, `Interface`, `Persistencia`, `Excecoes` |
 
-Diagrama De Classes:
+### Principais decisões de projeto
+
+- **Herança + polimorfismo:** `Veiculo` é abstrata e declara `calcularDiaria`, `calcularSeguro` e `calcularManutencao`. Cada categoria (`Popular`, `Sedan`, `SUV`) implementa sua própria regra, e `Contrato` calcula o valor total sem saber o tipo concreto do veículo.
+- **Interface `Imprimivel`:** define `gerarComprovante()` e `imprimir()`. `Contrato` a implementa, e `Persistencia` grava os comprovantes sem depender de nada além da interface.
+- **Repositório de clientes em memória:** `Cliente` mantém um `HashMap<Long, Cliente>` estático, com busca por CPF em O(1) e bloqueio de CPF duplicado.
+- **Validação no construtor/setters:** os objetos nunca são criados em estado inválido (programação defensiva). Os setters lançam `IllegalArgumentException`.
+- **Exceções de negócio:** `Excecoes` agrupa as *checked exceptions* `VeiculoIndisponivelException`, `DataInvalidaException` e `ValidacaoException`.
+- **Camada de interface:** `Interface` (abstrata) concentra os menus e as coleções `frota` e `contratos` (`LinkedList`). `Main` a estende e executa o laço principal.
+- **Persistência:** `Persistencia.salvarHistorico()` sobrescreve `historico_locacoes.txt` a cada nova locação ou devolução, usando *try-with-resources*.
+
+## Diagrama De Classes
+
+```text
                           «interface»
                          ┌─────────────────────┐
                          │     Imprimivel      │
@@ -123,9 +130,11 @@ Persistencia depende de Contrato (grava os comprovantes).
 Legenda:  △ herança/implementação (┆ tracejado = interface)
           ◄ associação (seta aponta para a classe referenciada)
           # protected   - private   + public   ~ pacote
+```
 
-Estrutura Das Pastas:
-------------------------
+## Estrutura Das Pastas
+
+```text
 projeto/
 ├── Loja/
 │   ├── Cliente.java
@@ -141,3 +150,4 @@ projeto/
 │   ├── Main.java
 │   └── Persistencia.java
 └── README.md
+```
