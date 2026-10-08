@@ -44,7 +44,7 @@ public abstract class Interface {
      * @return O número inteiro da opção escolhida.
      */
     public int menuPrincipal() {
-        System.out.println("======== LOCADORA ROTA RELAMPAGO MATT =========");
+        System.out.println("======== LOCADORA ROTA SEGURA =========");
         System.out.println("| Eu sou:                             |");
         System.out.println("|     1 - Cliente                     |");
         System.out.println("|     2 - Operador                    |");
